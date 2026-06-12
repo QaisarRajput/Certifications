@@ -1,5 +1,5 @@
 import React from 'react'
-import vendors from '../data/vendors.json'
+import { vendors } from '../data/vendors'
 
 type Props = {
   onSelect: (vendor: string | null) => void
