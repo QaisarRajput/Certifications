@@ -1,5 +1,5 @@
 import { useMemo } from 'react'
-import { certifications, Certification } from '../data/certifications'
+import { certifications, Certification } from '../data/certifications.clean'
 import { Filters, filterCertifications } from '../utils/filter'
 
 export function useCertifications(filters: Filters) {
