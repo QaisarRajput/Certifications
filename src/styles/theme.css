@@ -1,0 +1,170 @@
+/* ===============================
+   Certifications Portfolio Theme
+   Premium Light/Dark Design System
+   =============================== */
+
+:root {
+  --bg: #f6f7fb;
+  --card: rgba(255, 255, 255, 0.8);
+  --text: #111827;
+  --muted: #6b7280;
+  --primary: #4f46e5;
+  --border: rgba(0, 0, 0, 0.08);
+  --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  --radius: 14px;
+}
+
+[data-theme='dark'] {
+  --bg: #0b0f17;
+  --card: rgba(17, 24, 39, 0.7);
+  --text: #f9fafb;
+  --muted: #9ca3af;
+  --primary: #818cf8;
+  --border: rgba(255, 255, 255, 0.08);
+  --shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  transition: all 0.3s ease;
+}
+
+.app-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ================= HEADER ================= */
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px 32px;
+  border-bottom: 1px solid var(--border);
+  backdrop-filter: blur(10px);
+  position: sticky;
+  top: 0;
+  background: var(--card);
+}
+
+.profile {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--primary), #22c55e);
+}
+
+.profile h1 {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.profile p {
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.header-actions {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.header-actions input {
+  padding: 10px 14px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: var(--card);
+  color: var(--text);
+  outline: none;
+  width: 240px;
+}
+
+.theme-toggle {
+  padding: 10px 14px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: var(--card);
+  cursor: pointer;
+  color: var(--text);
+}
+
+/* ================= VENDOR BAR ================= */
+
+.vendor-bar {
+  display: flex;
+  gap: 10px;
+  padding: 14px 32px;
+  overflow-x: auto;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg);
+}
+
+.vendor-bar button {
+  padding: 8px 14px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--card);
+  color: var(--text);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.2s ease;
+}
+
+.vendor-bar button.active {
+  background: var(--primary);
+  color: white;
+  border-color: var(--primary);
+}
+
+/* ================= MAIN ================= */
+
+.content {
+  padding: 32px;
+  flex: 1;
+}
+
+.placeholder {
+  padding: 40px;
+  border-radius: var(--radius);
+  background: var(--card);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+}
+
+.placeholder h2 {
+  margin-bottom: 12px;
+}
+
+.placeholder p {
+  color: var(--muted);
+  margin-bottom: 6px;
+}
+
+/* ================= SCROLLBAR ================= */
+
+::-webkit-scrollbar {
+  height: 6px;
+  width: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--primary);
+  border-radius: 10px;
+}
