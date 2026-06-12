@@ -1,64 +1,36 @@
-export type Certification = {
-  id: string
-  title: string
-  vendor: string
-  field: string
-  industry: string[]
-  tags: string[]
-  issueDate: string
-  expiryDate: string | null
-  credentialId: string
-  verificationUrl: string
-  image: string
-  featured?: boolean
-}
+export function filterCertifications(data, filters) {
+  if (!Array.isArray(data)) return []
 
-export type Filters = {
-  search: string
-  vendor: string | null
-  tag: string | null
-  field: string | null
-}
+  const search = (filters?.search || '').toLowerCase().trim()
+  const vendor = filters?.vendor || null
+  const tag = filters?.tag || null
+  const field = filters?.field || null
 
-const normalize = (value: string) => value.toLowerCase().trim()
+  return data.filter((c) => {
+    if (!c) return false
 
-export function filterCertifications(
-  data: Certification[],
-  filters: Filters
-): Certification[] {
-  const search = normalize(filters.search || '')
-
-  return data.filter((item) => {
     // Vendor filter
-    if (filters.vendor && item.vendor !== filters.vendor) return false
+    if (vendor && c.vendor !== vendor) return false
 
     // Field filter
-    if (filters.field && item.field !== filters.field) return false
+    if (field && c.field !== field) return false
 
     // Tag filter
-    if (filters.tag && !item.tags.includes(filters.tag)) return false
+    if (tag && (!Array.isArray(c.tags) || !c.tags.includes(tag))) {
+      return false
+    }
 
-    // Search filter
+    // Search filter (title + tags + vendor)
     if (search) {
-      const haystack = normalize(
-        `${item.title} ${item.vendor} ${item.field} ${item.tags.join(' ')}`
-      )
+      const inTitle = c.title?.toLowerCase?.().includes(search)
+      const inVendor = c.vendor?.toLowerCase?.().includes(search)
+      const inTags =
+        Array.isArray(c.tags) &&
+        c.tags.some((t) => t.toLowerCase().includes(search))
 
-      if (!haystack.includes(search)) return false
+      if (!inTitle && !inVendor && !inTags) return false
     }
 
     return true
   })
-}
-
-export function getVendors(data: Certification[]): string[] {
-  return Array.from(new Set(data.map((c) => c.vendor)))
-}
-
-export function getTags(data: Certification[]): string[] {
-  return Array.from(new Set(data.flatMap((c) => c.tags)))
-}
-
-export function getFields(data: Certification[]): string[] {
-  return Array.from(new Set(data.map((c) => c.field)))
 }
