@@ -1,20 +1,20 @@
 import { useMemo } from 'react'
-import data from '../data/certifications.json'
-import { Certification, Filters, filterCertifications } from '../utils/filter'
+import { certifications, Certification } from '../data/certifications'
+import { Filters, filterCertifications } from '../utils/filter'
 
 export function useCertifications(filters: Filters) {
-  const certifications: Certification[] = data as Certification[]
+  const data: Certification[] = certifications
 
   const filtered = useMemo(() => {
-    return filterCertifications(certifications, filters)
-  }, [certifications, filters.search, filters.vendor, filters.tag, filters.field])
+    return filterCertifications(data, filters)
+  }, [data, filters.search, filters.vendor, filters.tag, filters.field])
 
   const featured = useMemo(() => {
-    return certifications.filter((c) => c.featured)
-  }, [certifications])
+    return data.filter((c) => c.featured)
+  }, [data])
 
   return {
-    all: certifications,
+    all: data,
     filtered,
     featured
   }
